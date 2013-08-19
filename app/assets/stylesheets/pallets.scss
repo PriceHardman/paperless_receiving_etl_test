@@ -1,0 +1,37 @@
+#description_search_results_div {
+  display: none;
+}
+
+#descriptions_dropdown_div {
+  #descriptions_dropdown {
+    display: none;
+  }
+}
+
+#descriptions_list_div {
+  /*
+    ul#description_list >
+      li "Descriptions" >
+        ul.categories >
+          li.category >
+            ul.category_descriptions >
+              li.category_description
+  */
+  ul,li {
+    list-style-type: none;
+  }
+
+  #descriptions_list > li > ul.categories {
+    display: none;
+  }
+  #descriptions_list > li > ul.categories.visible {
+    display: block;
+  }
+
+  li.category > ul.category_descriptions {
+    display: none;
+  }
+  li.category > ul.category_descriptions.visible {
+    display: block;
+  }
+}

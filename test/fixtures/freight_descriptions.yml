@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  freight_description: MyString
+  description_category: MyString
+  rate_class_tli: MyString
+  rate_units: MyString
+
+two:
+  freight_description: MyString
+  description_category: MyString
+  rate_class_tli: MyString
+  rate_units: MyString

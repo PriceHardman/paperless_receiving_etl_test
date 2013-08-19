@@ -1,0 +1,24 @@
+<div id="descriptions_dropdown_div">
+  <select id="descriptions_dropdown">
+    <%= categorized_descriptions.values.inject([]) {|y,x| y<<x }.flatten!.sort.each do |description| %>
+        <option class="dropdown_description" value="<%= description %>"><%= description %></option>
+    <% end %>
+  </select>
+</div>
+<div id="descriptions_list_div">
+  <ul id="descriptions_list">
+    <li><a href="#descriptions">Descriptions</a>
+      <ul class="categories">
+        <% categorized_descriptions.each do |category,descriptions| %>
+            <li class="category"><a href="#<%= category  %>"><%= category %></a>
+              <ul class="category_descriptions">
+                <% descriptions.each do |description| %>
+                    <li class="category_description"><a href="#<%= description %>"><%= description %></a></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</div>

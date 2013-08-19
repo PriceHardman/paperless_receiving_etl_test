@@ -1,0 +1,85 @@
+body{
+  background-color: blue;
+}
+
+#main_div {
+  padding: 1%;
+  background-color: white;
+  span {
+    display: inline-block;
+
+
+
+    #pallets_div {
+
+
+      ol > li {
+        background-color: lightblue;
+        font-weight: bold;
+        border: 2px solid black;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 2%;
+
+        ul {
+          display: none; //hide pallet data by default
+        }
+
+        ul.visible {
+          display: block;
+        }
+      }
+    }
+
+    #pallets_div, #freight_receipts_div {
+      //outline: 2px solid red;
+    }
+
+    #add_pallet_to_fr {
+      padding: 10%;
+      border: 3px solid black;
+      border-radius: 20px;
+      font-size: x-large;
+      font-weight: bold;
+      background-color: lightgreen;
+    }
+  }
+}
+
+#search_container {
+  height: auto;
+  width: auto;
+  position: relative;
+}
+#search_div {
+
+}
+
+.odd_search {
+  background-color: lightgreen;
+}
+
+.even_search {
+  background-color: lightblue;
+}
+
+.search_result_hover {
+  background-color: rgba(255,255,0,0.3);
+}
+
+#search_results {
+  display: none;
+  float: left;
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-height: 3000%;
+  border: 5px solid dodgerblue;
+  border-radius: 3px;
+  padding: 0.5%;
+  background: lightgray;
+  z-index: 5;
+  overflow: auto;
+  font-size: small;
+}
+

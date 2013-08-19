@@ -1,0 +1,54 @@
+<h1>Today's Freight Receipts</h1>
+<h3>Select Freight Receipt to Add Pallets to It</h3>
+
+<div id="search_container" >
+  <div id="search_div">
+    Search for freight receipts by fr#, bk#, customer, sailing, etc: <br/>
+    <input id="search"/>
+  </div>
+  <div id="search_results">
+    <table id="results_table" border="1">
+      <thead>
+      <tr>
+        <th>FR#</th>
+        <th>BK#</th>
+        <th>Sailing</th>
+        <th>Dest.</th>
+        <th>Customer</th>
+        <th>Consignee</th>
+        <th>Shipper</th>
+        <th>FR Creation</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div id="default_table">
+  <table border="2" id="freight_receipts">
+    <thead>
+    <tr>
+      <th>FR#</th>
+      <th>Sailing</th>
+      <th>Destination</th>
+      <th>Shipper</th>
+      <th>Consignee</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @freight_receipts.each do |fr| %>
+        <tr>
+          <td><%= link_to fr.id, freight_receipt_path(fr.id) %></td>
+          <td><%= fr.vessel_id+fr.voyage.to_s %></td>
+          <td><%= fr.destination_id %></td>
+          <td><%= fr.shipper %></td>
+          <td><%= fr.consignee %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

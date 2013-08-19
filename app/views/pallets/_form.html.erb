@@ -1,0 +1,10 @@
+<%= form_for :pallet do |f| %>
+    Pallet Number on Sticker: <%= f.text_field :pallet_number, :size => 10 %><br/>
+    Select a description: <input id="pallet_description" name="pallet[description]" type="text" size="40"/>
+    <div id="description_search_results_div">
+        <table id="description_search_results">
+
+        </table>
+    </div>
+    <%= render "descriptions" %><br/>
+<% end %>

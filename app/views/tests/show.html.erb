@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sailing date:</b>
+  <%= @test.sailing_date %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @test.customer %>
+</p>
+
+<p>
+  <b>Shipper:</b>
+  <%= @test.shipper %>
+</p>
+
+<p>
+  <b>Consignee:</b>
+  <%= @test.consignee %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_path(@test) %> |
+<%= link_to 'Back', tests_path %>

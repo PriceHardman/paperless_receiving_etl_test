@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fr_number: 1
+  line_id: 1
+  description: MyString
+  receive_date: 2013-07-15
+  pallet_number: 1
+  item_quantity: 1
+  item_length: 1
+  item_width: 1
+  item_height: 1
+  transferred: MyString
+  hazard_id: MyString
+  deck_stow: MyString
+  rate_class_tli: MyString
+  secondary_description: MyString
+  service_class_id: MyString
+  oversize_yn: MyString
+
+two:
+  fr_number: 1
+  line_id: 1
+  description: MyString
+  receive_date: 2013-07-15
+  pallet_number: 1
+  item_quantity: 1
+  item_length: 1
+  item_width: 1
+  item_height: 1
+  transferred: MyString
+  hazard_id: MyString
+  deck_stow: MyString
+  rate_class_tli: MyString
+  secondary_description: MyString
+  service_class_id: MyString
+  oversize_yn: MyString

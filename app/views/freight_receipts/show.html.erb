@@ -1,0 +1,37 @@
+<div id="main_div">
+    <span>
+        <h1>Freight Receipt #<%= @freight_receipt.id %></h1>
+
+        <%= button_to "Add Pallet to FR", new_freight_receipt_pallet_path(@freight_receipt.id), :method => "get" %><br/>
+
+
+        <div id="pallets_div">
+            <h3>Pallets:</h3>
+
+            <ol>
+            <% @freight_receipt.pallets.each do |pallet| %>
+                <li class="pallets"> Pallet <%= pallet.pallet_number %>
+                  <ul>
+                    <% pallet_data.each do |field,label| %>
+                        <li><%= "#{label}: #{pallet[field]}"%></li>
+                    <% end %>
+                  </ul>
+                </li>
+            <% end %>
+            </ol>
+          <h5>(Click pallets to view properties)</h5>
+        </div>
+
+        <div id="freight_receipts_div">
+            <h3>FR Data:</h3>
+
+            <table>
+                <% freight_receipt_data.each do |field,label| %>
+                    <tr><td><b><%= label %>:</b></td><td><%= @freight_receipt[field] %></td></tr>
+                <% end %>
+            </table>
+        </div>
+    </span>
+</div>
+
+
