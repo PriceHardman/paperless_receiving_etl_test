@@ -11,15 +11,15 @@ It turns out that Rails and Sequel make this remarkably easy to do, with minimal
 
 The first step is to include the mysql2, ruby-informix, and sequel gems in the gemfile:
 
-`
+```ruby
 gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'ruby-informix'
 gem 'sequel'
-`
+```
 
 Next, create two separate entries in database.yml. One for mysql -- under the heading 'development' -- and one for informix under the heading 'development_sequel'. Notice the use of environment variables in ERB tags, so as to not publish my database connection parameters to GitHub:
-`
+```yaml
 development:
   adapter: mysql2
   encoding: utf8
@@ -35,13 +35,14 @@ development_sequel:
   database: <%=ENV['INFORMIXRAILSDBNAME']%>
   username: <%=ENV['INFORMIXRAILSUSERNAME']%>
   password: <%=ENV['INFORMIXRAILSPASSWORD']%>
-`
+```
 
 Next, we are going to create an abstract class inheriting from `Sequel::Model` (the Sequel equivalent of ActiveRecord::Base), which will serve as the parent class from which all of our Informix-backed models will inherit. This will vastly simplify and DRY things up, as we will override ActiveRecord (and thereby MySQL) with Sequel (and thereby Informix) in one -- and only one -- class, and then all child classes will inherit from the parent class.
 
 To do this, create a file app/models/informix_backed_model.rb:
 
-`InformixBackedModel = Class.new(Sequel::Model)
+```ruby
+InformixBackedModel = Class.new(Sequel::Model)
 
 class InformixBackedModel
   extend ActiveModel::Naming
@@ -54,7 +55,8 @@ class InformixBackedModel
 				).result
 			)["#{Rails.env}_sequel"]
   )
-end`
+end
+```
 
 Notice that all we need in order to override ActiveRecord with Sequel is:
 1. Declare a class `Class.new(Sequel::Model)`, which is how to declare an abstract class in Sequel that inherits from Sequel::Model.
@@ -65,13 +67,15 @@ To create MySQL-backed models, create a Rails model normally, using a generator 
 
 To create an Informix-backed model, manually create a file under app/models/. For example, say we wish to create a model called "FreightReceipt". We would then create a file /app/models/freight_receipt.rb:
 
-`class FreightReceipt < InformixBackedModel # => inherits from InformixBackedModel
+```ruby
+class FreightReceipt < InformixBackedModel # => inherits from InformixBackedModel
   set_dataset @@connection[:warehouse_tran] # => model represents informix table warehouse_tran
 
   def pallets # => creates a method (similar to attr_accessor in ActiveRecord) pallets.
     Pallet.where(:fr_number => self.id) # => returns the records in MySQL table pallets with this fr_number
   end
-end`
+end
+```
 
 This looks a bit different from a normal Rails model, but it will behave in largely the same way as an ActiveRecord model. What we have done here is create a model FreightReceipt which inherits from InformixBackedModel, uses @@connection to define its source table as the Informix table warehouse_tran, and actually defines a method pallets, which will return all the records in the MySQL table pallets whose fr_number field contains the id of the given FreightReceipt object. In other words, we have manually defined a one-to-many association between this Informix-backed Sequel model and the MySQL-backed ActiveRecord model Pallet, effectively treating to tables in different databases as if they were in a single database.
 
